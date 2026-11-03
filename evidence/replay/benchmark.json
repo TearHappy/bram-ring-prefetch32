@@ -1,0 +1,150 @@
+{
+  "protocol": "BOUNTY.md How I measure: OMP_NUM_THREADS=8 taskset -c <eight P-cores> <binary>; CPU 8 cores line; 800 nonces per run; five runs each, arithmetic mean; twenty runs when within 2% of the bar; alternating order",
+  "cpus": "0,2,4,6,8,10,12,14",
+  "pairs": 5,
+  "rates": {
+    "champion": [
+      824.0,
+      814.0,
+      831.0,
+      825.0,
+      833.0
+    ],
+    "contestant": [
+      941.0,
+      924.0,
+      931.0,
+      937.0,
+      935.0
+    ]
+  },
+  "means": {
+    "champion": 825.4,
+    "contestant": 933.6
+  },
+  "ratio_all_pairs": 1.1310879573540102,
+  "gain_percent_all_pairs": 13.108795735401024,
+  "bar_ratio": 1.1,
+  "clears_bar_all_pairs": true,
+  "pair_ratios": [
+    1.141990291262136,
+    1.135135135135135,
+    1.1203369434416366,
+    1.1357575757575757,
+    1.1224489795918366
+  ],
+  "sensitivity": {
+    "rule": "a pair is quiet when both rates are within 5% of their column maximum; the quiet-pairs ratio is shown beside the all-pairs ratio and decides nothing",
+    "quiet_pairs": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "quiet_pairs_ratio": 1.1310879573540102,
+    "median_pair_ratio": 1.135135135135135,
+    "min_pair_ratio": 1.1203369434416366,
+    "max_pair_ratio": 1.141990291262136
+  },
+  "runs": [
+    {
+      "pair": 0,
+      "binary": "cpu/verify_avx2",
+      "order": "champion-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_avx2",
+      "rate_hashes_per_s": 824.0,
+      "wall_seconds": 2.861,
+      "started_utc": 1793696366.454707
+    },
+    {
+      "pair": 0,
+      "binary": "cpu/verify_prefetch32",
+      "order": "champion-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_prefetch32",
+      "rate_hashes_per_s": 941.0,
+      "wall_seconds": 2.541,
+      "started_utc": 1793696369.3153164
+    },
+    {
+      "pair": 1,
+      "binary": "cpu/verify_prefetch32",
+      "order": "contestant-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_prefetch32",
+      "rate_hashes_per_s": 924.0,
+      "wall_seconds": 2.601,
+      "started_utc": 1793696371.8563201
+    },
+    {
+      "pair": 1,
+      "binary": "cpu/verify_avx2",
+      "order": "contestant-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_avx2",
+      "rate_hashes_per_s": 814.0,
+      "wall_seconds": 2.9,
+      "started_utc": 1793696374.4573588
+    },
+    {
+      "pair": 2,
+      "binary": "cpu/verify_avx2",
+      "order": "champion-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_avx2",
+      "rate_hashes_per_s": 831.0,
+      "wall_seconds": 2.834,
+      "started_utc": 1793696377.3571856
+    },
+    {
+      "pair": 2,
+      "binary": "cpu/verify_prefetch32",
+      "order": "champion-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_prefetch32",
+      "rate_hashes_per_s": 931.0,
+      "wall_seconds": 2.57,
+      "started_utc": 1793696380.1912978
+    },
+    {
+      "pair": 3,
+      "binary": "cpu/verify_prefetch32",
+      "order": "contestant-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_prefetch32",
+      "rate_hashes_per_s": 937.0,
+      "wall_seconds": 2.541,
+      "started_utc": 1793696382.761289
+    },
+    {
+      "pair": 3,
+      "binary": "cpu/verify_avx2",
+      "order": "contestant-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_avx2",
+      "rate_hashes_per_s": 825.0,
+      "wall_seconds": 2.853,
+      "started_utc": 1793696385.3018231
+    },
+    {
+      "pair": 4,
+      "binary": "cpu/verify_avx2",
+      "order": "champion-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_avx2",
+      "rate_hashes_per_s": 833.0,
+      "wall_seconds": 2.856,
+      "started_utc": 1793696388.1545959
+    },
+    {
+      "pair": 4,
+      "binary": "cpu/verify_prefetch32",
+      "order": "champion-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_prefetch32",
+      "rate_hashes_per_s": 935.0,
+      "wall_seconds": 2.569,
+      "started_utc": 1793696391.010858
+    }
+  ],
+  "contestant_digest_xor_fold_800_nonces": [
+    "1dba7f5670aad7c48c80ee3885c49b12cf9a2acbf3b2696bf3d6a6bfa7a51dec"
+  ],
+  "contestant_fold_constant_across_runs": true,
+  "binary_sha256": {
+    "cpu/verify_avx2": "c706a415b82fb4b1140f2dfedea42013c980601a18138c6447318d29042b87e8",
+    "cpu/verify_prefetch32": "a8abc592390966f1797e39bf5f0b02ec33b79e9b804332f29c219f2674f763d2"
+  }
+}

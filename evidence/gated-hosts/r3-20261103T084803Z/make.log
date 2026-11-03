@@ -1,0 +1,22 @@
+wrote cpu/tables.h, fpga/ring.v  (768 lanes x 20 cells, 768 RAM10 blocks, 128 DSPs)
+wrote fpga/{epoch.vh,params.vh,prev256.vh}
+  vector nonce=0x0 done in 19s
+  vector nonce=0x1 done in 19s
+  vector nonce=0xdeadbeef done in 19s
+  vector nonce=0xffffffffffffffff done in 19s
+  vector nonce=0x8000000000000000 done in 19s
+  vector nonce=0x123456789abcdef done in 19s
+  vector nonce=0x5555555555555555 done in 18s
+  vector nonce=0xffffffff done in 18s
+wrote vectors.txt, fpga/tb_vectors.v
+built cpu/simple
+built cpu/verify_avx2
+built cpu/verify_prefetch32
+
+environment check (all optional pieces -- the race runs with whatever you have):
+  [--]  iverilog        missing: 'make sim' skipped  (apt install iverilog)
+  [--]  GPU (cupy)      not in GPU_PY: race runs without GPU  (set GPU_PY=/venv/bin/python)
+  [--]  Efinity         not found: FPGA build unavailable (not needed for the race)
+  [--]  FPGA board      not detected: only needed to mine on real silicon
+
+ready.  race:  make race        (target=20 leading-zero bits; override with DIFF=)

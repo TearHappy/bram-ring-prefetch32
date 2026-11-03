@@ -1,0 +1,3 @@
+verify_avx2.c == spec.py: 8/8 golden vectors bit-exact (digest, fold, full state)
+CPU 1 core (verify_avx2): 111.5 hashes/s  (8.97 ms/header)
+CPU 8 cores (verify_avx2): 831 hashes/s

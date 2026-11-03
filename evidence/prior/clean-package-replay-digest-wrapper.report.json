@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "seed": "epoch0",
+  "official_award_decision": false,
+  "official_vectors": "PASS: exact eight-row membership, digest, fold and full state; official checker passed",
+  "mode": "paired benchmark",
+  "count": 800,
+  "rates": [
+    [
+      821.8537655459547,
+      822.5119674848681,
+      806.1876831470096,
+      819.2212220502788,
+      821.9654467467174
+    ],
+    [
+      935.7286178434346,
+      903.2117814664779,
+      932.7883396196621,
+      929.6326899460141,
+      934.7997735246568
+    ]
+  ],
+  "means": [
+    818.3480169949657,
+    927.2322404800491
+  ],
+  "ratio": 1.1330536901462953,
+  "source_candidate_sha256": "0bade1287b6775b45c4515c78f4674f3cb4fcdd6c5451058ccddde5209b2182b",
+  "fresh_seed_timing_is_official": null
+}

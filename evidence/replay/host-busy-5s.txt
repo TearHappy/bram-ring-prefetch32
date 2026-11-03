@@ -1,0 +1,1 @@
+host-wide busy fraction over 5 s (all CPUs, from /proc/stat): 0.000

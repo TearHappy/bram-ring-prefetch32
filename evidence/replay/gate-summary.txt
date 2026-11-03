@@ -1,0 +1,4 @@
+literal verify_avx2: CPU 8 cores (verify_avx2): 832 hashes/s
+literal verify_prefetch32: CPU 8 cores (verify_prefetch32): 941 hashes/s  (800 nonces, fill + run + SHA-256 per nonce)
+bound verify_avx2: CPU 8 cores (verify_avx2): 832 hashes/s
+bound verify_prefetch32: CPU 8 cores (verify_prefetch32): 940 hashes/s  (800 nonces, fill + run + SHA-256 per nonce)

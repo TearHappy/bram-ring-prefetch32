@@ -1,0 +1,20 @@
+simple.c == spec.py: 8/8 golden vectors bit-exact (digest, fold, full state)
+CPU 20 cores (simple): 127 hashes/s
+verify_avx2.c == spec.py: 8/8 golden vectors bit-exact (digest, fold, full state)
+CPU 1 core (verify_avx2): 108.2 hashes/s  (9.24 ms/header)
+CPU 20 cores (verify_avx2): 708 hashes/s
+PASS: 8/8 vectors bit-exact on every column (digest, fold, state)
+verify_prefetch32.c == spec.py: 8/8 golden vectors bit-exact (digest, fold, full state)
+CPU 1 core (verify_prefetch32): 119.0 hashes/s  (8.40 ms/header; fill + run + SHA-256 per nonce)
+  digest xor-fold over 200 timed nonces: c970f0aab4ebd56ff0ba99da2a8e52893051eaa99a5c89f4ca6283a02c78c32a
+CPU 20 cores (verify_prefetch32): 892 hashes/s  (2000 nonces, fill + run + SHA-256 per nonce)
+  digest xor-fold over 2000 timed nonces: 22823a8a43e2b7d6d6781869e6a22dcd3850a38832c68efa98d592b1ae01327a
+PASS: 8/8 vectors bit-exact on every column (digest, fold, state)
+avalanche over 96 nonce bit-flips: mean 0.5002  min 0.4901  max 0.5135  (ideal 0.5)
+avalanche PASS (band: |mean-0.5| <= 0.01, every flip in [0.45, 0.55])
+!! iverilog missing -- RTL leg NOT CHECKED
+!! cupy/NVIDIA GPU missing -- CUDA leg NOT CHECKED (cupy in a venv? re-run: make prove GPU_PY=/path/to/venv/bin/python)
+
+PYTHON + C LEGS BIT-EXACT ON THE GOLDEN VECTORS
+NOT CHECKED ON THIS BOX: RTL CUDA  (install iverilog / cupy to check them too)
+-rw-r--r-- 1 root root 31456 Nov  3 08:59 cpu/verify_prefetch32.vectors.out

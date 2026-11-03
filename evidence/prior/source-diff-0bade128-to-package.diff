@@ -1,0 +1,127 @@
+--- verify_prefetch32.c@0bade128 (measured in the records above)
++++ verify_prefetch32.c@3ae9a680 (this package)
+@@ -1,4 +1,35 @@
+-/* verify_avx2.c â€” BRAM-ring verifier/miner, AVX2 lane-parallel. The champion
++/* verify_prefetch32.c: BRAM-ring verifier/miner, AVX2 lane-parallel, with a
++ * 32-lane prefetch distance on the bank read-modify-write. Derived from the
++ * shipped champion cpu/verify_avx2.c, whose header is preserved below. The
++ * function is spec.py; this file implements it bit-exactly (make prove,
++ * host/check_vectors.py, and BRAM_EPOCH=<seed> make prove).
++ *
++ * What differs from verify_avx2.c:
++ *   - RMW scheduling: lane b's bank address a = PEXT(v_b, AMASK[b]) is known
++ *     as soon as v_b is computed, the old word bank[b][a] is consumed only on
++ *     the NEXT step (u = head XOR last_read), and every lane owns its bank.
++ *     So the read-then-write of lane b is deferred by 32 lanes: a prefetch of
++ *     &bank[b][a] is issued when lane b is computed, and the read and write
++ *     execute when lane b+32 is processed; the last 32 lanes drain at the end
++ *     of the step. Operations on distinct banks commute, including the old
++ *     word each returns, so the per-step result is unchanged.
++ *   - cell evaluation: each cell's 4-input rule is evaluated in algebraic
++ *     normal form (Boolean Mobius transform of the rule-bit masks, computed
++ *     once per epoch). spec.py admits only degree-3 rules, so 15 coefficient
++ *     masks suffice; a degree-4 coefficient aborts rather than miscomputes.
++ *   - the fill and run phases are separate loops (the fill never reads rd).
++ *   - the default benchmark times fill + run + the full SHA-256 digest for
++ *     every nonce, keeps every digest, and prints their XOR-fold after the
++ *     timer, so the digest work is observable and cannot be discarded.
++ *
++ *   cc -O3 -march=native -fopenmp -o verify_prefetch32 verify_prefetch32.c sha256.c
++ *   ./verify_prefetch32            # verify against the golden vectors + benchmark
++ *   ./verify_prefetch32 mine 0     # mine, emitting SHARE lines for race.py
++ *   ./verify_prefetch32 fold <nonce-hex> [count]   # fast fold of specific nonces
++ *   ./verify_prefetch32 vectors | python3 ../host/check_vectors.py   # the 4-column proof
++ *
++ * ---- header of the upstream champion, cpu/verify_avx2.c, as shipped ----
++ * verify_avx2.c: BRAM-ring verifier/miner, AVX2 lane-parallel. The champion
+  * CPU attack: this is the number to beat if you want to close the moat from
+  * the CPU side.
+  *
+@@ -104,8 +135,6 @@
+         head[b] = (uint32_t)((s ^ PREVCHUNK[b]) & MASK);
+     }
+ }
+-
+-#define MUX(s, a, b) _mm256_or_si256(_mm256_and_si256(s, a), _mm256_andnot_si256(s, b))
+ 
+ static void hash_state(uint64_t nonce, uint32_t out[B])
+ {
+@@ -288,13 +317,18 @@
+     memcpy(out, head, sizeof(uint32_t)*B);
+ }
+ 
+-static void state_digest(const uint32_t head[B], char hex[65])
++static void state_digest_raw(const uint32_t head[B], uint8_t d[32])
+ {
+     int nb = (W + 7) / 8;
+     static _Thread_local uint8_t raw[B * ((W + 7) / 8)];
+     for (int b = 0; b < B; b++)
+         for (int k = 0; k < nb; k++) raw[b*nb + k] = (head[b] >> (8*k)) & 0xff;
+-    uint8_t d[32]; sha256(d, raw, (size_t)B * nb);
++    sha256(d, raw, (size_t)B * nb);
++}
++
++static void state_digest(const uint32_t head[B], char hex[65])
++{
++    uint8_t d[32]; state_digest_raw(head, d);
+     for (int i = 0; i < 32; i++) sprintf(hex + 2*i, "%02x", d[i]);
+ }
+ 
+@@ -336,7 +370,7 @@
+ static int mine(uint64_t start)
+ {
+     int NT = ncores();
+-    fprintf(stderr, "verify_avx2.c mining on %d cores\n", NT);
++    fprintf(stderr, "verify_prefetch32.c mining on %d cores\n", NT);
+     { uint32_t out[B]; hash_state(0, out); }
+     int gD = 10; long gcnt = 0; double gtsec = now();
+     #pragma omp parallel num_threads(NT) shared(gD, gcnt, gtsec)
+@@ -418,19 +452,39 @@
+         nv++;
+     }
+     fclose(f);
+-    printf("verify_avx2.c == spec.py: %d/%d golden vectors bit-exact (digest, fold, full state)\n", nv, nv);
+-
+-    int iters = 200; double t0 = now();
+-    for (int i = 0; i < iters; i++) { uint32_t out[B]; hash_state(i, out); }
++    printf("verify_prefetch32.c == spec.py: %d/%d golden vectors bit-exact (digest, fold, full state)\n", nv, nv);
++
++    /* Benchmark, per BOUNTY.md "How I measure": every timed nonce performs the
++       fill, the run and the full SHA-256 digest of the final state. Table
++       setup and the vector check above are outside the timer. Every digest is
++       stored and XOR-folded after the timer, so the digest work is observable. */
++    enum { ITERS1 = 200 };
++    static uint8_t dig1[ITERS1][32];
++    double t0 = now();
++    for (int i = 0; i < ITERS1; i++) { uint32_t out[B]; hash_state(i, out); state_digest_raw(out, dig1[i]); }
+     double dt = now() - t0;
+-    printf("CPU 1 core (verify_avx2): %.1f hashes/s  (%.2f ms/header)\n",
+-           iters/dt, 1000.0*dt/iters);
++    printf("CPU 1 core (verify_prefetch32): %.1f hashes/s  (%.2f ms/header; fill + run + SHA-256 per nonce)\n",
++           ITERS1/dt, 1000.0*dt/ITERS1);
++    uint8_t fold1[32] = {0};
++    for (int i = 0; i < ITERS1; i++) for (int k = 0; k < 32; k++) fold1[k] ^= dig1[i][k];
++    printf("  digest xor-fold over %d timed nonces: ", ITERS1);
++    for (int k = 0; k < 32; k++) printf("%02x", fold1[k]);
++    printf("\n");
+ 
+     int NT = ncores();
+-    int miters = 100 * NT; t0 = now();
++    int miters = 100 * NT;
++    uint8_t (*digs)[32] = calloc((size_t)miters, 32);
++    if (!digs) { fprintf(stderr, "out of memory\n"); return 1; }
++    t0 = now();
+     #pragma omp parallel for num_threads(NT)
+-    for (int i = 0; i < miters; i++) { uint32_t out[B]; hash_state(i, out); }
++    for (int i = 0; i < miters; i++) { uint32_t out[B]; hash_state(i, out); state_digest_raw(out, digs[i]); }
+     dt = now() - t0;
+-    printf("CPU %d cores (verify_avx2): %.0f hashes/s\n", NT, miters/dt);
++    printf("CPU %d cores (verify_prefetch32): %.0f hashes/s  (%d nonces, fill + run + SHA-256 per nonce)\n", NT, miters/dt, miters);
++    uint8_t foldN[32] = {0};
++    for (int i = 0; i < miters; i++) for (int k = 0; k < 32; k++) foldN[k] ^= digs[i][k];
++    printf("  digest xor-fold over %d timed nonces: ", miters);
++    for (int k = 0; k < 32; k++) printf("%02x", foldN[k]);
++    printf("\n");
++    free(digs);
+     return 0;
+ }

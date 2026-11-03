@@ -1,0 +1,32 @@
+; Root-level lemma. A bank step reads the old word then writes v.
+; The proof treats addresses and v as arbitrary but fixed before scheduling.
+(set-logic QF_AUFBV)
+(define-sort Lane () (_ BitVec 10))
+(define-sort Row () (_ BitVec 9))
+(define-sort Word () (_ BitVec 20))
+(define-sort Mem () (Array Lane (Array Row Word)))
+(declare-const m Mem)
+(declare-const b Lane)
+(declare-const c Lane)
+(declare-const a Row)
+(declare-const d Row)
+(declare-const v Word)
+(declare-const w Word)
+(define-fun oldword ((mem Mem)(lane Lane)(addr Row)) Word (select (select mem lane) addr))
+(define-fun put ((mem Mem)(lane Lane)(addr Row)(val Word)) Mem
+  (store mem lane (store (select mem lane) addr val)))
+(define-fun disagree () Bool (or
+  (distinct (put (put m b a v) c d w) (put (put m c d w) b a v))
+  (distinct (oldword m b a) (oldword (put m c d w) b a))
+  (distinct (oldword m c d) (oldword (put m b a v) c d))))
+(push)
+(assert (distinct b c))
+(assert disagree)
+(check-sat)
+(pop)
+; Negative control: same bank/row with different writes.
+(assert (= b c))
+(assert (= a d))
+(assert (distinct v w))
+(assert disagree)
+(check-sat)

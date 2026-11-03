@@ -1,0 +1,18 @@
+{
+  "candidate_sha256": "0bade1287b6775b45c4515c78f4674f3cb4fcdd6c5451058ccddde5209b2182b",
+  "initial_ratio": 1.1474871276767817,
+  "initial_means": [
+    814.1375177127297,
+    934.2123217340852
+  ],
+  "heldout_ratio": 1.1586545434696895,
+  "heldout_means": [
+    799.6238431372551,
+    926.487798917675
+  ],
+  "heldout_binary_sha256": [
+    "d15b5cbbf1496d21a6aca511ee70fac89e866cacf6e6a3eca0c8ff8cbfc4299b",
+    "b66082147e83fb1e0d2ac485c9178c032d4a3cf3162f19d3249bab5b029b0436"
+  ],
+  "source_archive": "prefetch.tgz:evidence-prefetch/epoch0-candidate/submission.c"
+}

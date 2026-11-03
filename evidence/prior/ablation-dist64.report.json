@@ -1,0 +1,286 @@
+{
+  "status": "LOCAL_PROTOCOL_COMPLETE",
+  "official_judgement": false,
+  "unsupported": [
+    "P-core identity and isolation require manual verification of recorded lscpu topology; eight logical CPU IDs alone do not establish eight P-cores.",
+    "Fresh-seed portability untested; rerun with --seed and an unpredictable seed.",
+    "Organizer judgement, current champion, reference-machine equivalence, price evidence, and award eligibility are not established by this harness."
+  ],
+  "negative_controls": 6,
+  "frozen": {
+    "spec.py": "5596327c5fc89b4d87eaf64df0b25e8430a9b25247ebae4c3e1037c19cd2f292",
+    "generate.py": "20f78b63ff10f7b4fee681355190e91eaaeb527a733d2701d928eb0ac6534dab",
+    "vectors.txt": "d406e2319f21e641dc77fcf79693c88062cc312cd1d75f0c286fa4ba85cf88f1"
+  },
+  "source_candidate_sha256": "999307e1e30bca4fdbef047ab400a0d7831f06ff1bd13d130ef77f523cc055f4",
+  "environment": {
+    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.39",
+    "lscpu": {
+      "lscpu": [
+        {
+          "field": "Architecture:",
+          "data": "x86_64"
+        },
+        {
+          "field": "CPU op-mode(s):",
+          "data": "32-bit, 64-bit"
+        },
+        {
+          "field": "Address sizes:",
+          "data": "39 bits physical, 48 bits virtual"
+        },
+        {
+          "field": "Byte Order:",
+          "data": "Little Endian"
+        },
+        {
+          "field": "CPU(s):",
+          "data": "20"
+        },
+        {
+          "field": "On-line CPU(s) list:",
+          "data": "0-19"
+        },
+        {
+          "field": "Vendor ID:",
+          "data": "GenuineIntel"
+        },
+        {
+          "field": "Model name:",
+          "data": "12th Gen Intel(R) Core(TM) i7-12700KF"
+        },
+        {
+          "field": "CPU family:",
+          "data": "6"
+        },
+        {
+          "field": "Model:",
+          "data": "151"
+        },
+        {
+          "field": "Thread(s) per core:",
+          "data": "2"
+        },
+        {
+          "field": "Core(s) per socket:",
+          "data": "12"
+        },
+        {
+          "field": "Socket(s):",
+          "data": "1"
+        },
+        {
+          "field": "Stepping:",
+          "data": "2"
+        },
+        {
+          "field": "CPU(s) scaling MHz:",
+          "data": "33%"
+        },
+        {
+          "field": "CPU max MHz:",
+          "data": "5000.0000"
+        },
+        {
+          "field": "CPU min MHz:",
+          "data": "800.0000"
+        },
+        {
+          "field": "BogoMIPS:",
+          "data": "7219.20"
+        },
+        {
+          "field": "Flags:",
+          "data": "fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid rdseed adx smap clflushopt clwb intel_pt sha_ni xsaveopt xsavec xgetbv1 xsaves split_lock_detect user_shstk avx_vnni dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp hwp_pkg_req hfi vnmi umip pku ospke waitpkg gfni vaes vpclmulqdq rdpid movdiri movdir64b fsrm md_clear serialize arch_lbr ibt flush_l1d arch_capabilities ibpb_exit_to_user"
+        },
+        {
+          "field": "Virtualization:",
+          "data": "VT-x"
+        },
+        {
+          "field": "L1d cache:",
+          "data": "512 KiB (12 instances)"
+        },
+        {
+          "field": "L1i cache:",
+          "data": "512 KiB (12 instances)"
+        },
+        {
+          "field": "L2 cache:",
+          "data": "12 MiB (9 instances)"
+        },
+        {
+          "field": "L3 cache:",
+          "data": "25 MiB (1 instance)"
+        },
+        {
+          "field": "NUMA node(s):",
+          "data": "1"
+        },
+        {
+          "field": "NUMA node0 CPU(s):",
+          "data": "0-19"
+        },
+        {
+          "field": "Vulnerability Gather data sampling:",
+          "data": "Not affected"
+        },
+        {
+          "field": "Vulnerability Indirect target selection:",
+          "data": "Not affected"
+        },
+        {
+          "field": "Vulnerability Itlb multihit:",
+          "data": "Not affected"
+        },
+        {
+          "field": "Vulnerability L1tf:",
+          "data": "Not affected"
+        },
+        {
+          "field": "Vulnerability Mds:",
+          "data": "Not affected"
+        },
+        {
+          "field": "Vulnerability Meltdown:",
+          "data": "Not affected"
+        },
+        {
+          "field": "Vulnerability Mmio stale data:",
+          "data": "Not affected"
+        },
+        {
+          "field": "Vulnerability Reg file data sampling:",
+          "data": "Mitigation; Clear Register File"
+        },
+        {
+          "field": "Vulnerability Retbleed:",
+          "data": "Not affected"
+        },
+        {
+          "field": "Vulnerability Spec rstack overflow:",
+          "data": "Not affected"
+        },
+        {
+          "field": "Vulnerability Spec store bypass:",
+          "data": "Mitigation; Speculative Store Bypass disabled via prctl"
+        },
+        {
+          "field": "Vulnerability Spectre v1:",
+          "data": "Mitigation; usercopy/swapgs barriers and __user pointer sanitization"
+        },
+        {
+          "field": "Vulnerability Spectre v2:",
+          "data": "Mitigation; Enhanced / Automatic IBRS; IBPB conditional; PBRSB-eIBRS SW sequence; BHI BHI_DIS_S"
+        },
+        {
+          "field": "Vulnerability Srbds:",
+          "data": "Not affected"
+        },
+        {
+          "field": "Vulnerability Tsa:",
+          "data": "Not affected"
+        },
+        {
+          "field": "Vulnerability Tsx async abort:",
+          "data": "Not affected"
+        },
+        {
+          "field": "Vulnerability Vmscape:",
+          "data": "Mitigation; IBPB before exit to userspace"
+        }
+      ]
+    },
+    "cpus": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10,
+      12,
+      14
+    ],
+    "compiler": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+  },
+  "build_inputs": {
+    "corrupt-cell-negative-control": {
+      "submission.c": "cef9169590a4b81201879ce92959b155b3e7c3fbf6ec20372e45e9f98ceed05b",
+      "tables.h": "c25ec853118e1e5eede4be5ef204768921fde242fd926f8a214e69dc004085c6",
+      "sha256.h": "8483f784e6adce94c864a58d7a454ac5af38bf6e0294e08d41c2af8963fc1db0",
+      "sha256.c": "838a3dfa0ba2bb0c544e57ce403b7b11c525f896befa2ec9d048b7e03944b998",
+      "wrapper.c": "cd893fdf0d0137ba83ebbb3956caa48ecc3980f177fed00a28147446937067d5",
+      "runner": "a7d46b7cad180ed09e31bc03764dba3f7ca073f344f291be975add3a91a4a6ba"
+    },
+    "epoch0-baseline": {
+      "submission.c": "cef9169590a4b81201879ce92959b155b3e7c3fbf6ec20372e45e9f98ceed05b",
+      "tables.h": "c25ec853118e1e5eede4be5ef204768921fde242fd926f8a214e69dc004085c6",
+      "sha256.h": "8483f784e6adce94c864a58d7a454ac5af38bf6e0294e08d41c2af8963fc1db0",
+      "sha256.c": "838a3dfa0ba2bb0c544e57ce403b7b11c525f896befa2ec9d048b7e03944b998",
+      "wrapper.c": "cd893fdf0d0137ba83ebbb3956caa48ecc3980f177fed00a28147446937067d5",
+      "runner": "d15b5cbbf1496d21a6aca511ee70fac89e866cacf6e6a3eca0c8ff8cbfc4299b"
+    },
+    "epoch0-candidate": {
+      "submission.c": "999307e1e30bca4fdbef047ab400a0d7831f06ff1bd13d130ef77f523cc055f4",
+      "tables.h": "c25ec853118e1e5eede4be5ef204768921fde242fd926f8a214e69dc004085c6",
+      "sha256.h": "8483f784e6adce94c864a58d7a454ac5af38bf6e0294e08d41c2af8963fc1db0",
+      "sha256.c": "838a3dfa0ba2bb0c544e57ce403b7b11c525f896befa2ec9d048b7e03944b998",
+      "wrapper.c": "cd893fdf0d0137ba83ebbb3956caa48ecc3980f177fed00a28147446937067d5",
+      "runner": "ddc9e41b4c11eb8dcc7aafe3f04aa8c54f890a3c69e0c0b50fd4ea3cc3a697dc"
+    }
+  },
+  "compiled_negative_control": "PASS: corrupt cell rejected by official vector oracle",
+  "correctness": "eight official rows and two fresh random nonces matched; random comparison uses baseline as oracle",
+  "rates": [
+    [
+      810.9288212275198,
+      817.2128905539188,
+      822.1020339649031,
+      825.2584936032265,
+      827.8333594005985,
+      818.177737055481,
+      828.7647357853424,
+      791.7013531646711,
+      816.0400098051695,
+      822.1539485714608,
+      821.8779150532835,
+      807.1828921242553,
+      813.3068790224754,
+      823.9849791246238,
+      818.6326480185936,
+      822.5602006928441,
+      783.3812560288532,
+      816.1460765507089,
+      818.6077464900167,
+      825.9470378166778
+    ],
+    [
+      895.8449878566979,
+      894.8880793681607,
+      914.849786616662,
+      914.085655932053,
+      933.2538916512298,
+      921.7150600062888,
+      929.8550542871233,
+      930.0298829994274,
+      930.0026701306662,
+      930.2154876036915,
+      926.5445778102287,
+      929.1752248011985,
+      918.7642447720756,
+      924.9837593085884,
+      932.7845405868295,
+      930.8878468975088,
+      919.2279596944784,
+      919.7867612821874,
+      924.5741386091777,
+      930.0508586453902
+    ]
+  ],
+  "means": [
+    816.5900507027312,
+    922.5760234429832
+  ],
+  "ratio": 1.1297909185264305,
+  "timed_nonce_count": 800
+}

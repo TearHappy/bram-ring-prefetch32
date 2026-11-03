@@ -1,0 +1,33 @@
+wrote cpu/tables.h, fpga/ring.v  (768 lanes x 20 cells, 768 RAM10 blocks, 128 DSPs)
+wrote fpga/{epoch.vh,params.vh,prev256.vh}
+  vector nonce=0x0 done in 14s
+  vector nonce=0x1 done in 15s
+  vector nonce=0xdeadbeef done in 14s
+  vector nonce=0xffffffffffffffff done in 14s
+  vector nonce=0x8000000000000000 done in 14s
+  vector nonce=0x123456789abcdef done in 14s
+  vector nonce=0x5555555555555555 done in 14s
+  vector nonce=0xffffffff done in 14s
+wrote vectors.txt, fpga/tb_vectors.v
+built cpu/simple
+built cpu/verify_avx2
+built cpu/verify_prefetch32
+simple.c == spec.py: 8/8 golden vectors bit-exact (digest, fold, full state)
+CPU 20 cores (simple): 63 hashes/s
+verify_avx2.c == spec.py: 8/8 golden vectors bit-exact (digest, fold, full state)
+CPU 1 core (verify_avx2): 110.7 hashes/s  (9.03 ms/header)
+CPU 20 cores (verify_avx2): 442 hashes/s
+PASS: 8/8 vectors bit-exact on every column (digest, fold, state)
+verify_prefetch32.c == spec.py: 8/8 golden vectors bit-exact (digest, fold, full state)
+CPU 1 core (verify_prefetch32): 122.0 hashes/s  (8.20 ms/header; fill + run + SHA-256 per nonce)
+  digest xor-fold over 200 timed nonces: 430505920f259af096e0ff3d73b4620783751e67c2e70f9efc467ea38fc263a6
+CPU 20 cores (verify_prefetch32): 521 hashes/s  (2000 nonces, fill + run + SHA-256 per nonce)
+  digest xor-fold over 2000 timed nonces: 64bef7727805ddcc718cc8dc07b1893467847b5050652f5acfe1310d9246dec8
+PASS: 8/8 vectors bit-exact on every column (digest, fold, state)
+avalanche over 96 nonce bit-flips: mean 0.4998  min 0.4902  max 0.5085  (ideal 0.5)
+avalanche PASS (band: |mean-0.5| <= 0.01, every flip in [0.45, 0.55])
+!! iverilog missing -- RTL leg NOT CHECKED
+!! cupy/NVIDIA GPU missing -- CUDA leg NOT CHECKED (cupy in a venv? re-run: make prove GPU_PY=/path/to/venv/bin/python)
+
+PYTHON + C LEGS BIT-EXACT ON THE GOLDEN VECTORS
+NOT CHECKED ON THIS BOX: RTL CUDA  (install iverilog / cupy to check them too)

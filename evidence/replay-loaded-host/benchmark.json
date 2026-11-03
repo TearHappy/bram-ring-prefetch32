@@ -1,0 +1,461 @@
+{
+  "protocol": "BOUNTY.md How I measure: OMP_NUM_THREADS=8 taskset -c <eight P-cores> <binary>; CPU 8 cores line; 800 nonces per run; five runs each, arithmetic mean; twenty runs when within 2% of the bar; alternating order",
+  "cpus": "0,2,4,6,8,10,12,14",
+  "pairs": 20,
+  "rates": {
+    "champion": [
+      638.0,
+      631.0,
+      683.0,
+      760.0,
+      604.0,
+      662.0,
+      602.0,
+      697.0,
+      565.0,
+      497.0,
+      606.0,
+      629.0,
+      614.0,
+      598.0,
+      579.0,
+      533.0,
+      635.0,
+      580.0,
+      559.0,
+      540.0
+    ],
+    "contestant": [
+      685.0,
+      696.0,
+      702.0,
+      843.0,
+      699.0,
+      674.0,
+      689.0,
+      675.0,
+      628.0,
+      674.0,
+      679.0,
+      646.0,
+      678.0,
+      751.0,
+      572.0,
+      628.0,
+      679.0,
+      610.0,
+      738.0,
+      652.0
+    ]
+  },
+  "means": {
+    "champion": 610.6,
+    "contestant": 679.9
+  },
+  "ratio_all_pairs": 1.1134949230265312,
+  "gain_percent_all_pairs": 11.349492302653118,
+  "bar_ratio": 1.1,
+  "clears_bar_all_pairs": true,
+  "pair_ratios": [
+    1.073667711598746,
+    1.1030110935023771,
+    1.027818448023426,
+    1.1092105263157894,
+    1.1572847682119205,
+    1.0181268882175227,
+    1.1445182724252492,
+    0.9684361549497847,
+    1.111504424778761,
+    1.3561368209255533,
+    1.1204620462046204,
+    1.027027027027027,
+    1.1042345276872965,
+    1.2558528428093645,
+    0.9879101899827288,
+    1.1782363977485928,
+    1.0692913385826772,
+    1.0517241379310345,
+    1.3202146690518783,
+    1.2074074074074075
+  ],
+  "sensitivity": {
+    "rule": "a pair is quiet when both rates are within 5% of their column maximum; the quiet-pairs ratio is shown beside the all-pairs ratio and decides nothing",
+    "quiet_pairs": [
+      3
+    ],
+    "quiet_pairs_ratio": 1.1092105263157894,
+    "median_pair_ratio": 1.1067225270015428,
+    "min_pair_ratio": 0.9684361549497847,
+    "max_pair_ratio": 1.3561368209255533
+  },
+  "runs": [
+    {
+      "pair": 0,
+      "binary": "cpu/verify_avx2",
+      "order": "champion-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_avx2",
+      "rate_hashes_per_s": 638.0,
+      "wall_seconds": 3.146,
+      "started_utc": 1793694940.0765316
+    },
+    {
+      "pair": 0,
+      "binary": "cpu/verify_prefetch32",
+      "order": "champion-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_prefetch32",
+      "rate_hashes_per_s": 685.0,
+      "wall_seconds": 2.944,
+      "started_utc": 1793694943.2221208
+    },
+    {
+      "pair": 1,
+      "binary": "cpu/verify_prefetch32",
+      "order": "contestant-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_prefetch32",
+      "rate_hashes_per_s": 696.0,
+      "wall_seconds": 2.905,
+      "started_utc": 1793694946.1657257
+    },
+    {
+      "pair": 1,
+      "binary": "cpu/verify_avx2",
+      "order": "contestant-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_avx2",
+      "rate_hashes_per_s": 631.0,
+      "wall_seconds": 3.237,
+      "started_utc": 1793694949.0710967
+    },
+    {
+      "pair": 2,
+      "binary": "cpu/verify_avx2",
+      "order": "champion-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_avx2",
+      "rate_hashes_per_s": 683.0,
+      "wall_seconds": 3.075,
+      "started_utc": 1793694952.3083315
+    },
+    {
+      "pair": 2,
+      "binary": "cpu/verify_prefetch32",
+      "order": "champion-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_prefetch32",
+      "rate_hashes_per_s": 702.0,
+      "wall_seconds": 2.844,
+      "started_utc": 1793694955.383459
+    },
+    {
+      "pair": 3,
+      "binary": "cpu/verify_prefetch32",
+      "order": "contestant-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_prefetch32",
+      "rate_hashes_per_s": 843.0,
+      "wall_seconds": 2.659,
+      "started_utc": 1793694958.227512
+    },
+    {
+      "pair": 3,
+      "binary": "cpu/verify_avx2",
+      "order": "contestant-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_avx2",
+      "rate_hashes_per_s": 760.0,
+      "wall_seconds": 2.919,
+      "started_utc": 1793694960.8868802
+    },
+    {
+      "pair": 4,
+      "binary": "cpu/verify_avx2",
+      "order": "champion-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_avx2",
+      "rate_hashes_per_s": 604.0,
+      "wall_seconds": 3.204,
+      "started_utc": 1793694963.8055513
+    },
+    {
+      "pair": 4,
+      "binary": "cpu/verify_prefetch32",
+      "order": "champion-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_prefetch32",
+      "rate_hashes_per_s": 699.0,
+      "wall_seconds": 2.93,
+      "started_utc": 1793694967.0099387
+    },
+    {
+      "pair": 5,
+      "binary": "cpu/verify_prefetch32",
+      "order": "contestant-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_prefetch32",
+      "rate_hashes_per_s": 674.0,
+      "wall_seconds": 2.885,
+      "started_utc": 1793694969.9395368
+    },
+    {
+      "pair": 5,
+      "binary": "cpu/verify_avx2",
+      "order": "contestant-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_avx2",
+      "rate_hashes_per_s": 662.0,
+      "wall_seconds": 3.116,
+      "started_utc": 1793694972.824401
+    },
+    {
+      "pair": 6,
+      "binary": "cpu/verify_avx2",
+      "order": "champion-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_avx2",
+      "rate_hashes_per_s": 602.0,
+      "wall_seconds": 3.24,
+      "started_utc": 1793694975.9401007
+    },
+    {
+      "pair": 6,
+      "binary": "cpu/verify_prefetch32",
+      "order": "champion-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_prefetch32",
+      "rate_hashes_per_s": 689.0,
+      "wall_seconds": 2.943,
+      "started_utc": 1793694979.18021
+    },
+    {
+      "pair": 7,
+      "binary": "cpu/verify_prefetch32",
+      "order": "contestant-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_prefetch32",
+      "rate_hashes_per_s": 675.0,
+      "wall_seconds": 2.942,
+      "started_utc": 1793694982.1234748
+    },
+    {
+      "pair": 7,
+      "binary": "cpu/verify_avx2",
+      "order": "contestant-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_avx2",
+      "rate_hashes_per_s": 697.0,
+      "wall_seconds": 3.144,
+      "started_utc": 1793694985.0653389
+    },
+    {
+      "pair": 8,
+      "binary": "cpu/verify_avx2",
+      "order": "champion-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_avx2",
+      "rate_hashes_per_s": 565.0,
+      "wall_seconds": 3.326,
+      "started_utc": 1793694988.2093453
+    },
+    {
+      "pair": 8,
+      "binary": "cpu/verify_prefetch32",
+      "order": "champion-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_prefetch32",
+      "rate_hashes_per_s": 628.0,
+      "wall_seconds": 2.977,
+      "started_utc": 1793694991.5353715
+    },
+    {
+      "pair": 9,
+      "binary": "cpu/verify_prefetch32",
+      "order": "contestant-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_prefetch32",
+      "rate_hashes_per_s": 674.0,
+      "wall_seconds": 2.897,
+      "started_utc": 1793694994.5128543
+    },
+    {
+      "pair": 9,
+      "binary": "cpu/verify_avx2",
+      "order": "contestant-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_avx2",
+      "rate_hashes_per_s": 497.0,
+      "wall_seconds": 3.488,
+      "started_utc": 1793694997.4095106
+    },
+    {
+      "pair": 10,
+      "binary": "cpu/verify_avx2",
+      "order": "champion-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_avx2",
+      "rate_hashes_per_s": 606.0,
+      "wall_seconds": 3.199,
+      "started_utc": 1793695000.8978937
+    },
+    {
+      "pair": 10,
+      "binary": "cpu/verify_prefetch32",
+      "order": "champion-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_prefetch32",
+      "rate_hashes_per_s": 679.0,
+      "wall_seconds": 2.881,
+      "started_utc": 1793695004.0969224
+    },
+    {
+      "pair": 11,
+      "binary": "cpu/verify_prefetch32",
+      "order": "contestant-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_prefetch32",
+      "rate_hashes_per_s": 646.0,
+      "wall_seconds": 2.942,
+      "started_utc": 1793695006.9782252
+    },
+    {
+      "pair": 11,
+      "binary": "cpu/verify_avx2",
+      "order": "contestant-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_avx2",
+      "rate_hashes_per_s": 629.0,
+      "wall_seconds": 3.17,
+      "started_utc": 1793695009.9200275
+    },
+    {
+      "pair": 12,
+      "binary": "cpu/verify_avx2",
+      "order": "champion-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_avx2",
+      "rate_hashes_per_s": 614.0,
+      "wall_seconds": 3.172,
+      "started_utc": 1793695013.0904915
+    },
+    {
+      "pair": 12,
+      "binary": "cpu/verify_prefetch32",
+      "order": "champion-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_prefetch32",
+      "rate_hashes_per_s": 678.0,
+      "wall_seconds": 2.938,
+      "started_utc": 1793695016.2629688
+    },
+    {
+      "pair": 13,
+      "binary": "cpu/verify_prefetch32",
+      "order": "contestant-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_prefetch32",
+      "rate_hashes_per_s": 751.0,
+      "wall_seconds": 2.821,
+      "started_utc": 1793695019.2010272
+    },
+    {
+      "pair": 13,
+      "binary": "cpu/verify_avx2",
+      "order": "contestant-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_avx2",
+      "rate_hashes_per_s": 598.0,
+      "wall_seconds": 3.221,
+      "started_utc": 1793695022.0216105
+    },
+    {
+      "pair": 14,
+      "binary": "cpu/verify_avx2",
+      "order": "champion-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_avx2",
+      "rate_hashes_per_s": 579.0,
+      "wall_seconds": 3.306,
+      "started_utc": 1793695025.2427042
+    },
+    {
+      "pair": 14,
+      "binary": "cpu/verify_prefetch32",
+      "order": "champion-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_prefetch32",
+      "rate_hashes_per_s": 572.0,
+      "wall_seconds": 3.105,
+      "started_utc": 1793695028.5482337
+    },
+    {
+      "pair": 15,
+      "binary": "cpu/verify_prefetch32",
+      "order": "contestant-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_prefetch32",
+      "rate_hashes_per_s": 628.0,
+      "wall_seconds": 2.973,
+      "started_utc": 1793695031.6534472
+    },
+    {
+      "pair": 15,
+      "binary": "cpu/verify_avx2",
+      "order": "contestant-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_avx2",
+      "rate_hashes_per_s": 533.0,
+      "wall_seconds": 3.408,
+      "started_utc": 1793695034.6264362
+    },
+    {
+      "pair": 16,
+      "binary": "cpu/verify_avx2",
+      "order": "champion-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_avx2",
+      "rate_hashes_per_s": 635.0,
+      "wall_seconds": 3.173,
+      "started_utc": 1793695038.0342512
+    },
+    {
+      "pair": 16,
+      "binary": "cpu/verify_prefetch32",
+      "order": "champion-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_prefetch32",
+      "rate_hashes_per_s": 679.0,
+      "wall_seconds": 2.886,
+      "started_utc": 1793695041.2075832
+    },
+    {
+      "pair": 17,
+      "binary": "cpu/verify_prefetch32",
+      "order": "contestant-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_prefetch32",
+      "rate_hashes_per_s": 610.0,
+      "wall_seconds": 3.025,
+      "started_utc": 1793695044.093309
+    },
+    {
+      "pair": 17,
+      "binary": "cpu/verify_avx2",
+      "order": "contestant-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_avx2",
+      "rate_hashes_per_s": 580.0,
+      "wall_seconds": 3.27,
+      "started_utc": 1793695047.1183844
+    },
+    {
+      "pair": 18,
+      "binary": "cpu/verify_avx2",
+      "order": "champion-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_avx2",
+      "rate_hashes_per_s": 559.0,
+      "wall_seconds": 3.301,
+      "started_utc": 1793695050.3882127
+    },
+    {
+      "pair": 18,
+      "binary": "cpu/verify_prefetch32",
+      "order": "champion-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_prefetch32",
+      "rate_hashes_per_s": 738.0,
+      "wall_seconds": 2.784,
+      "started_utc": 1793695053.688779
+    },
+    {
+      "pair": 19,
+      "binary": "cpu/verify_prefetch32",
+      "order": "contestant-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_prefetch32",
+      "rate_hashes_per_s": 652.0,
+      "wall_seconds": 2.929,
+      "started_utc": 1793695056.4723494
+    },
+    {
+      "pair": 19,
+      "binary": "cpu/verify_avx2",
+      "order": "contestant-first",
+      "command": "OMP_NUM_THREADS=8 taskset -c 0,2,4,6,8,10,12,14 cpu/verify_avx2",
+      "rate_hashes_per_s": 540.0,
+      "wall_seconds": 3.357,
+      "started_utc": 1793695059.4014134
+    }
+  ],
+  "contestant_digest_xor_fold_800_nonces": [
+    "1dba7f5670aad7c48c80ee3885c49b12cf9a2acbf3b2696bf3d6a6bfa7a51dec"
+  ],
+  "contestant_fold_constant_across_runs": true,
+  "binary_sha256": {
+    "cpu/verify_avx2": "c706a415b82fb4b1140f2dfedea42013c980601a18138c6447318d29042b87e8",
+    "cpu/verify_prefetch32": "a8abc592390966f1797e39bf5f0b02ec33b79e9b804332f29c219f2674f763d2"
+  }
+}

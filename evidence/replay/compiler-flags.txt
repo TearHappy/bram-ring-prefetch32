@@ -1,0 +1,3 @@
+CC     ?= cc
+CFLAGS ?= -O3 -march=native
+OMP    ?= -fopenmp        # CPU competitors use every core; -fopenmp=off falls back to 1

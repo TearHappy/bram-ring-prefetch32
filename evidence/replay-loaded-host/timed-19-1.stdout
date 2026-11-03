@@ -1,0 +1,5 @@
+verify_prefetch32.c == spec.py: 8/8 golden vectors bit-exact (digest, fold, full state)
+CPU 1 core (verify_prefetch32): 122.8 hashes/s  (8.14 ms/header; fill + run + SHA-256 per nonce)
+  digest xor-fold over 200 timed nonces: c970f0aab4ebd56ff0ba99da2a8e52893051eaa99a5c89f4ca6283a02c78c32a
+CPU 8 cores (verify_prefetch32): 652 hashes/s  (800 nonces, fill + run + SHA-256 per nonce)
+  digest xor-fold over 800 timed nonces: 1dba7f5670aad7c48c80ee3885c49b12cf9a2acbf3b2696bf3d6a6bfa7a51dec

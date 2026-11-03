@@ -1,0 +1,4 @@
+cpu/tables.h epoch0 c25ec853118e1e5e seed 19788bbdefca1321 changed
+cpu/verify_prefetch32 epoch0 a8abc592390966f1 seed 6d44232430629103 changed
+cpu/verify_avx2 epoch0 c706a415b82fb4b1 seed ba51b0880d436450 changed
+vectors.txt epoch0 (see frozen.sha2 seed 9c198aecdb39686a
